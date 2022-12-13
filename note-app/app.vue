@@ -1,5 +1,13 @@
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <v-app>
+    <v-layout>
+      <nuxt-layout>
+        <app-bar></app-bar>
+        <menu-home></menu-home>
+        <v-main>
+          <nuxt-page></nuxt-page>
+        </v-main>
+      </nuxt-layout>
+    </v-layout>
+  </v-app>
 </template>
