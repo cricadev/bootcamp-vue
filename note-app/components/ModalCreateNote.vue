@@ -1,5 +1,11 @@
 <script setup>
 const dialog = ref(false);
+const newNote = ref("");
+defineProps({
+  modelValue: {
+    type: String,
+  },
+});
 </script>
 <template>
   <v-row justify="center">
@@ -16,8 +22,11 @@ const dialog = ref(false);
           <v-text-field
             variant="filled"
             label="Title"
-            model-value="My new post"
+            placeholder="Write an interesting title for your note"
+            :model-value="modelValue"
+            @update:model-value="modelValue"
           ></v-text-field>
+          {{ newNote }}
 
           <v-textarea
             variant="filled"

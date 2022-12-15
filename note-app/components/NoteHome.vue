@@ -1,4 +1,13 @@
 <script setup>
+const notes = ref([]);
+const addNote = () => {
+  notes.value.push({
+    id: Math.floor(Math.random() * 1000000),
+    text: newNote.value,
+    date: new Date(),
+  });
+};
+
 const cards = [
   {
     title: "Pre-fab homes",
@@ -35,6 +44,7 @@ const cards = [
               color="surface-variant"
               variant="text"
               icon="mdi-heart"
+              class="text-green"
             ></v-btn>
 
             <v-btn

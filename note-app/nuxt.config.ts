@@ -7,4 +7,13 @@ export default defineNuxtConfig({
   build: {
     transpile: ["vuetify"],
   },
+  modules: ["@nuxtjs/tailwindcss"],
+  tailwindcss: {
+    cssPath: "~/assets/css/tailwind.css",
+    configPath: "tailwind.config",
+    exposeConfig: false,
+    config: {},
+    injectPosition: 0,
+    viewer: true,
+  },
 });
