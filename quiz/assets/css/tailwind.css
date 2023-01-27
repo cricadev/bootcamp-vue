@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+/* Custom styles */
+@layer base {
+  /* ... */
+}
+
+.card {
+  @apply w-80 h-40 bg-white rounded-lg shadow-lg flex flex-col justify-between p-4;
+}
+.card img {
+  @apply w-16 h-16 rounded-full;
+}
+.card h2 {
+  @apply text-lg font-medium;
+}
+.card p {
+  @apply text-sm;
+}
+.card button {
+  @apply bg-blue-500 text-white rounded-md px-4 py-2;
+}
+.card button:hover {
+  @apply bg-blue-600;
+}
+.card button:active {
+  @apply bg-blue-700;
+}
