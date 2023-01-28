@@ -13,10 +13,6 @@
 <script setup lang="ts">
 const { quiz } = defineProps(["quiz"]);
 const router = useRouter();
-const handleClick = () => {
-  router.push(`/quizes/${quiz.id}`);
-};
-console.log(quiz);
 </script>
 
 <style scoped>

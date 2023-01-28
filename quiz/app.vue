@@ -3,39 +3,29 @@
   <div class="container">
     <NuxtLayout>
       <Nav />
+      <NuxtPage
+        :transition="{
+          name: 'bounce',
+          mode: 'out-in',
+        }"
+      ></NuxtPage>
     </NuxtLayout>
-    <NuxtPage></NuxtPage>
   </div>
 </template>
 
-<style scoped lang="scss">
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
+<style lang="scss">
+.bounce-enter-active,
+.bounce-leave-active {
+  transition: all 0.5s ease;
 }
-
-header {
-  margin-bottom: 10px;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
+.bounce-enter-from,
+.bounce-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
 }
-
-header h1 {
-  font-weight: bold;
-  margin-right: 30px;
-}
-
-header input {
-  border: none;
-  background-color: rgba(128, 128, 128, 0.1);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.options-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 40px;
+.bounce-enter-to,
+.bounce-leave-from {
+  opacity: 1;
+  transform: translateX(0%);
 }
 </style>

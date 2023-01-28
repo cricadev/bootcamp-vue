@@ -1,9 +1,8 @@
 <template>
   <div class="">
-    <div class="question-container mt-5">
-      <h1 class="question text-2xl mb-4">
+    <div class="mt-5 question-container">
+      <h1 class="mb-4 text-2xl question">
         {{ question?.text }}
-        {{ question }}
       </h1>
     </div>
     <div
@@ -11,15 +10,17 @@
       v-for="option in question.options"
       :key="option.id"
     >
-      {{ option }}
-      <div class="option flex mb-4 cursor-pointer">
+      <div
+        class="flex mb-4 cursor-pointer option"
+        @click="emitSelectedOption(option.isCorrect)"
+      >
         <p
-          class="option-label bg-green-500 p-4 flex items-center justify-center"
+          class="flex items-center justify-center p-4 bg-green-500 option-label"
         >
-          {{ option?.text }}
+          {{ option?.label }}
         </p>
-        <div class="option-value bg-white w-full text-2xl p-4">
-          <p>NaCL</p>
+        <div class="w-full p-4 text-2xl option-value bg-black/10">
+          <p>{{ option?.text }}</p>
         </div>
       </div>
     </div>
@@ -27,5 +28,10 @@
 </template>
 <script setup>
 const { question } = defineProps(["question"]);
+const emit = defineEmits(["selectOption"]);
+const emitSelectedOption = (isCorrect) => {
+  emit("selectOption", isCorrect);
+};
+console.log(question);
 </script>
 <style scoped></style>
