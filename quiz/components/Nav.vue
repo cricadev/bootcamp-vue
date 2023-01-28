@@ -7,6 +7,7 @@
     <NuxtLink class="link" active-class="active" to="/anim"
       >animations</NuxtLink
     >
+    <NuxtLink class="link" active-class="active" to="/api">API</NuxtLink>
   </header>
 </template>
 
@@ -26,5 +27,4 @@
 .active {
   @apply text-green-500;
 }
-
 </style>
