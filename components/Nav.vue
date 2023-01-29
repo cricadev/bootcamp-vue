@@ -72,7 +72,7 @@ const handleLogout = async () => {
 }
 .right-content {
   display: flex;
-  gap: 10px;
+  gap: 11px;
   align-items: center;
 }
 </style>
