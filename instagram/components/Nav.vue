@@ -12,13 +12,18 @@
               @search="onSearch"
             />
           </div>
-          <div class="right-content" v-if="!isAuthenticated">
-            <auth-modal :is-login="false"></auth-modal>
-            <auth-modal :is-login="true"></auth-modal>
+          <div class="content" v-if="!loadingUser">
+            <div class="right-content" v-if="!user">
+              <auth-modal :is-login="false"></auth-modal>
+              <auth-modal :is-login="true"></auth-modal>
+            </div>
+            <div class="right-content" v-else>
+              <a-button type="primary">Profile</a-button>
+              <a-button type="primary" @click="handleLogout">Log out</a-button>
+            </div>
           </div>
-          <div class="right-content" v-else>
-            <a-button type="primary">Profile</a-button>
-            <a-button type="primary">Log out</a-button>
+          <div class="spinner" v-else>
+            <a-spin size="large" />
           </div>
         </div>
       </Container>
@@ -27,19 +32,31 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 const serachUsername = ref("");
 const isAuthenticated = ref(false);
 const router = useRouter();
+const userStore = useUserStore();
+const { user, loadingUser } = storeToRefs(userStore);
 const onSearch = () => {
   if (serachUsername.value) {
     router.push(`/profile/${serachUsername.value}`);
     serachUsername.value = "";
   }
 };
+const handleLogout = async () => {
+  await userStore.handleLogout();
+};
 </script>
 
 <style scoped>
 .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.content {
   display: flex;
   justify-content: space-between;
   align-items: center;

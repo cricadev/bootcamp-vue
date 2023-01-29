@@ -8,10 +8,13 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/supabase": "^0.3.0",
     "nuxt": "^3.1.0"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
-    "ant-design-vue": "^3.2.15"
+    "@pinia/nuxt": "^0.4.6",
+    "ant-design-vue": "^3.2.15",
+    "pinia": "^2.0.29"
   }
 }
