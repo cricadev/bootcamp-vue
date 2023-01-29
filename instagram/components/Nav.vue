@@ -12,15 +12,13 @@
               @search="onSearch"
             />
           </div>
-          <div class="content" v-if="!loadingUser">
-            <div class="right-content" v-if="!user">
-              <auth-modal :is-login="false"></auth-modal>
-              <auth-modal :is-login="true"></auth-modal>
-            </div>
-            <div class="right-content" v-else>
-              <a-button type="primary">Profile</a-button>
-              <a-button type="primary" @click="handleLogout">Log out</a-button>
-            </div>
+          <div class="right-content" v-if="!user">
+            <auth-modal :is-login="false"></auth-modal>
+            <auth-modal :is-login="true"></auth-modal>
+          </div>
+          <div class="right-content" v-else>
+            <a-button type="primary">Profile</a-button>
+            <a-button type="primary" @click="handleLogout">Log out</a-button>
           </div>
           <div class="spinner" v-else>
             <a-spin size="large" />
