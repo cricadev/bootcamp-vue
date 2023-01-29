@@ -55,7 +55,9 @@ const handleLogout = async () => {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  flex-direction: column;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 }
 .content {
   display: flex;
