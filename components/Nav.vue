@@ -47,12 +47,18 @@ const handleLogout = async () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.ant-layout-header {
+  @media (max-width: 1000px) {
+    height: 100%;
+  }
+}
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  flex-direction: column;
 }
 .content {
   display: flex;
