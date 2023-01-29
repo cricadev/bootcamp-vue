@@ -7,8 +7,6 @@ export const useUserStore = defineStore("users", () => {
   const errorMessage = ref("");
   const loading = ref(false);
   const loadingUser = ref(false);
-  const clientAuth = useSupabaseAuthClient();
-
   const client = useSupabaseClient();
 
   const validateEmail = (email) => {
@@ -27,7 +25,7 @@ export const useUserStore = defineStore("users", () => {
       return (errorMessage.value = "Please enter a password");
     }
     loading.value = true;
-    const { error, data } = await clientAuth.auth.signInWithPassword({
+    const { error, data } = await client.auth.signInWithPassword({
       email,
       password,
     });
@@ -71,7 +69,7 @@ export const useUserStore = defineStore("users", () => {
       return (errorMessage.value = "Username already taken");
     }
 
-    const { error } = await clientAuth.auth.signUp({
+    const { error } = await client.auth.signUp({
       email,
       password,
     });
@@ -98,13 +96,13 @@ export const useUserStore = defineStore("users", () => {
     loading.value = false;
   };
   const handleLogout = async () => {
-    await clientAuth.auth.signOut();
+    await client.auth.signOut();
     user.value = null;
   };
 
   const getUser = async () => {
     loadingUser.value = true;
-    const { data } = await clientAuth.auth.getUser();
+    const { data } = await client.auth.getUser();
 
     if (!data.user) {
       loadingUser.value = false;
