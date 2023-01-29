@@ -20,9 +20,6 @@
             <a-button type="primary">Profile</a-button>
             <a-button type="primary" @click="handleLogout">Log out</a-button>
           </div>
-          <div class="spinner" v-else>
-            <a-spin size="large" />
-          </div>
         </div>
       </Container>
     </a-layout-header>
