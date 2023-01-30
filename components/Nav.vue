@@ -4,7 +4,7 @@
       <Container>
         <div class="nav-container">
           <div class="left-content">
-            <nuxt-link to="/">Instagram</nuxt-link>
+            <nuxt-link to="/">SocialGod</nuxt-link>
             <a-input-search
               v-model:value="serachUsername"
               placeholder="Search username"

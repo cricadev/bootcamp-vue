@@ -12,7 +12,12 @@
           v-if="user && username === user.username"
           :addNewPost="addNewPost"
         ></UploadPhotoModal>
-        <a-button v-else>Follow</a-button>
+        <div class="" v-else>
+          <a-button v-if="!props.isFollowing" @click="followUser"
+            >Follow</a-button
+          >
+          <a-button v-else @click="unfollowUser"> Following</a-button>
+        </div>
       </div>
     </div>
     <div class="bottom-content">
@@ -30,11 +35,34 @@
 </template>
 <script setup>
 import { storeToRefs } from "pinia";
-const props = defineProps(["user", "userInfo", "addNewPost"]);
+const props = defineProps([
+  "user",
+  "userInfo",
+  "addNewPost",
+  "isFollowing",
+  "updateIsFollowing",
+]);
 const route = useRoute();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 const username = route.params.slug;
+const client = useSupabaseClient();
+const followUser = async () => {
+  props.updateIsFollowing(true);
+  await client.from("followers_following").insert({
+    follower_id: user.value.id,
+    following_id: props.user.id,
+  });
+};
+const unfollowUser = async () => {
+  props.updateIsFollowing(false);
+
+  await client
+    .from("followers_following")
+    .delete()
+    .eq("follower_id", user.value.id)
+    .eq("following_id", props.user.id);
+};
 </script>
 <style scoped>
 .userbar-container {
@@ -45,13 +73,15 @@ const username = route.params.slug;
 }
 .bottom-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   align-items: center;
+  gap: 10px;
 }
 .bottom-content h5 {
   margin: 0;
-  padding: 0;
+  padding: 10px;
+  background-color: #f0f2f5;
 }
 .top-content {
   display: flex;

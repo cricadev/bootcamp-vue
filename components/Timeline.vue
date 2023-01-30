@@ -1,34 +1,26 @@
 <script setup>
-const data = [
-  {
-    id: 1,
-    username: "cricadev",
-    avatar:
-      "https://avatars.githubusercontent.com/u/62143751?s=400&u=203d03a71acb1e7829159cc52c689589051ad40f&v=4",
-    caption: "Never stop learning",
-  },
-  {
-    id: 2,
-    username: "Wes Bos",
-    avatar: "https://avatars.githubusercontent.com/u/176013?v=4",
-    caption: "I love JavaScript",
-  },
-  {
-    id: 3,
-    username: "Scott Tolinski",
-    avatar: "https://avatars.githubusercontent.com/u/669383?v=4",
-    caption: "I love React",
-  },
-];
+import { storeToRefs } from "pinia";
+const userStore = useUserStore();
+const { user, loadingUser } = storeToRefs(userStore);
 </script>
 <template>
   <Container>
-    <div class="timeline-container">
-      <Card v-for="post in data" :key="post.id" :post="post"></Card>
+    <div class="" v-if="!loadingUser">
+      <Cards v-if="user" />
+      <LogInMessage v-else />
+    </div>
+    <div class="timeline-spinner" v-else>
+      <a-spin size="large" />
     </div>
   </Container>
 </template>
-<style scoped>
+<style>
+.timeline-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
 .timeline-container {
   background: aquamarine;
   padding: 10px;
