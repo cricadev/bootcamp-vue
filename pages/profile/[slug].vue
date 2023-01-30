@@ -9,12 +9,18 @@ const loading = ref(false);
 const userInfo = reactive({ posts: null, followers: null, following: null });
 const username = route.params.slug;
 const isFollowing = ref(false);
+
 const addNewPost = (post) => {
   posts.value.unshift(post);
 };
 const userStore = useUserStore();
 const { user: loggedInUser } = storeToRefs(userStore);
-
+useHead({
+  title: loggedInUser.value?.username,
+  meta: [
+    { name: "description", content: "This is where your description goes..." },
+  ],
+});
 const updateIsFollowing = (follow) => {
   isFollowing.value = follow;
 };

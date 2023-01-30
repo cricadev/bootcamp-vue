@@ -7,10 +7,13 @@
   </div>
 </template>
 <script setup>
-definePageMeta({
-  title: "Supabase Login | CricaDev",
-  description:
-    "This is an instagram-like app where you have your own account and can upload photos and follow other users.",
-  keywords: "home, page",
+useHead({
+  title: "SocialGod by CricaDev",
+  meta: [
+    {
+      name: "description",
+      content: "Welcome to SocialGod, be whatever you want, whenever you want.",
+    },
+  ],
 });
 </script>
