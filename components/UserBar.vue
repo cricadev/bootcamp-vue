@@ -7,10 +7,13 @@
       <div class="iserbar-container" v-else>
         <a-typography-title :level="2"> User not found </a-typography-title>
       </div>
-      <UploadPhotoModal
-        v-if="user && username === user.username"
-        :addNewPost="addNewPost"
-      ></UploadPhotoModal>
+      <div class="" v-if="user">
+        <UploadPhotoModal
+          v-if="user && username === user.username"
+          :addNewPost="addNewPost"
+        ></UploadPhotoModal>
+        <a-button v-else>Follow</a-button>
+      </div>
     </div>
     <div class="bottom-content">
       <a-typography-title :level="5">
